@@ -1,0 +1,52 @@
+<div class="mb-3 row">
+  <label for="table-complete-search" class="col-xs-3 col-sm-auto col-form-label">Ciudad Origen:</label>
+  <div class="col-xs-3 col-sm-auto">
+    <input [(ngModel)]="origin" id="table-complete-search" type="text" class="form-control" name="searchTerm"
+      placeholder="Ciudad Origen">
+  </div>
+  <label for="table-complete-search" class="col-xs-3 col-sm-auto col-form-label">Ciudad Destino:</label>
+  <div class="col-xs-3 col-sm-auto">
+    <input [(ngModel)]="destination" id="table-complete-search" type="text" class="form-control" name="searchTerm"
+      placeholder="Ciudad Destino">
+  </div>
+  <div class="col-xs-3 col-sm-auto">
+    <button class="btn btn-info" (click)="getFlightsByOrigin()">Realizar busqueda</button> </div>
+</div>
+<table class="table table-striped table-dark">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Ciudad de Origen</th>
+      <th scope="col">Ciudad de Destino</th>
+      <th scope="col">Fecha de Partida</th>
+      <th scope="col">Fecha de Llegada</th>
+      <th scope="col">Tipo</th>
+      <th scope="col">Precio</th>
+      <th scope="col">Reservar</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let flight of flights">
+      <th scope="row">{{ flight.id }}</th>
+      <td>{{ flight.origin }}</td>
+      <td>{{ flight.destination}}</td>
+      <td>{{ flight.departure_date}}</td>
+      <td>{{ flight.arrival_date}}</td>
+      <td>{{ flight.type}}</td>
+      <td>{{ flight.price}}</td>
+      <td><button class="btn btn-success">Reservar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="d-flex justify-content-between p-2">
+  <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize"
+    (pageChange)="getFlightsByOrigin()">
+  </ngb-pagination>
+  <select class="form-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="getFlightsByOrigin()">
+    <option [ngValue]="2">2 elementos por pagina</option>
+    <option [ngValue]="4">4 elementos por pagina</option>
+    <option [ngValue]="6">6 elementos por pagina</option>
+  </select>
+</div>

@@ -1,0 +1,11 @@
+<ngb-carousel *ngIf="images" [showNavigationArrows]="true" [showNavigationIndicators]="true">
+  <ng-template ngbSlide *ngFor="let image of images">
+    <div class="picsum-img-wrapper ">
+      <img [src]="image" alt="Random slide" width="800" height="400">
+    </div>
+    <div class="carousel-caption">
+      <h3>Bienvenidos a GP Nauticals</h3>
+      <p>Nos encargamos de hacer tus viajes más cómodos</p>
+    </div>
+  </ng-template>
+</ngb-carousel>
